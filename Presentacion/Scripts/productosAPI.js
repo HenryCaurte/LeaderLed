@@ -2,8 +2,8 @@ const productosTotales = document.getElementById('productosTotales'); // guardo 
 const listaCategorias = document.getElementById('listaProductos'); // par ala lista de categorias
 const listaCat = []
 
-const url = 'http://127.0.0.1:8000/productos/'; // url de django localhost
-//const url = 'https://leaderled.000webhostapp.com/LogicaPhp/productos.php' //esta es para la web en general
+//const url = 'http://127.0.0.1:8000/productos/'; // url de django localhost
+const url = 'https://leaderled.000webhostapp.com/LogicaPhp/productos.php' //esta es para la web en general
 
 
 function crearProducto(data,productosPagina) {
