@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Persistencia"
+		},
+		{
+			"path": "../Presentacion"
+		}
+	],
+	"settings": {}
+}

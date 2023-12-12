@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Quicksand:wght@300&display=swap');
+*{
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+html {
+    position: relative;
+    min-height: 100%;
+  }
+body{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    background: #ffffff;
+    align-items: center;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    margin-bottom: 0;
+}
+header{
+    position:relative;
+    display: flex;
+    top: 0;
+    left: calc(-50% + 10rem);
+    width: 22rem;
+    height: 22rem;
+    background-color: rgb(213, 220, 226);/* ver este color*/
+    border-radius: 0px 0px 100%;
+    overflow:hidden;
+    z-index: 5;
+    transition: all .8s;
+}
+
+#interior{
+    z-index: 5;
+    position: relative;
+    width: 17rem;
+    height: 17rem;
+    background-color: aliceblue;
+    border-radius: 0px 0px 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+   
+}
+#interior svg {
+    position: absolute;
+    width: 90%;
+    left: -5px;
+    pointer-events:none;
+}
+
+
+#exterior {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    width: 22rem;
+    height: 22rem;
+    background-color: rgb(148, 175, 199);
+    border-radius: 0px 0px 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    transition: all .8s;
+
+}
+.menu {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    direction: rtl;
+    align-items: center;
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all .8s;
+
+}
+#inicio {
+    background-color : #008d36;
+    color: #ffffff;
+    clip-path: polygon(
+        0% 0%,
+        100% 0%,
+        100% 10%,
+        96% 30%,
+        90% 45%,
+        87% 50%,
+        85% 50%,
+        0% 0%
+    );
+    height: 100%;
+    cursor: pointer;
+    transition: background-color,font-size 0.4s;
+
+}
+#inicio p{
+    position: absolute;
+    top: 4rem;
+    right: 2.096rem;
+}
+#productos{
+    background-color: rgb(44, 45, 46);
+    color: #ffffff;
+    height: 100%;
+    clip-path: polygon(
+        0% 0%,
+        86.6% 50%,
+        80% 62%,
+        70% 72%,
+        60% 81%,
+        50% 86.6%,
+        0% 0%
+    );
+    cursor: pointer;
+    transition: background-color,font-size 0.4s;
+
+}
+#productos p {
+    position: absolute;
+    top:12.9rem;
+    left:11.37rem;
+}
+#contacto{
+    background-color: rgb(212, 209, 209);
+    clip-path: polygon(
+        0% 0%,
+        50% 86.7%,
+        35% 95%,
+        25% 98%,
+        10% 100%,
+        0% 100%
+    );
+    height: 100%;
+    cursor: pointer;
+    transition: background-color,font-size 0.4s;
+}
+#contacto p {
+    position: absolute;
+    color: black;
+    top:18.0rem;
+    left: 3.0rem;
+}
+
+#inicio:hover{
+    background-color: #0faa4b;
+    color:#ffffff;
+}
+#productos:hover{
+    background-color: rgb(83, 90, 95);
+    color:#ffffff;
+
+}
+#contacto:hover{
+    background-color:rgb(231, 224, 224);
+}
+
+@media screen and (max-width: 1310px){
+    header{
+        position:relative;
+        display: flex;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6rem;
+        background-color: rgb(213, 220, 226);/* ver este color*/
+        border-radius: 0;
+        overflow:none;
+        z-index: 5;
+        justify-content: space-between;
+    }
+    
+    #interior{
+        z-index: 5;
+        position: relative;
+        width: 10rem;
+        height: 100%;
+        background-color: rgb(206, 221, 235);
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        border-radius: 0;
+    }
+
+    #interior svg {
+        position: relative;
+        height: 100%;
+        left: 0;
+        pointer-events:none;
+    }
+    
+    
+    #exterior {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        top: 0;
+        width: 20rem;
+        height: 100%;
+        background-color: rgb(19, 124, 216);
+        border-radius: 0;
+        align-items: center;
+        justify-content: start;
+    }
+    .menu {
+        position: relative;
+        width: 100%;
+        display: flex;
+        direction: rtl;
+        align-items: center;
+        justify-content: center;
+        color: aliceblue;
+    }
+    #inicio {
+        position: relative;
+        background-color : #008d36;
+        clip-path:none;
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        transition: background-color,font-size 0.4s;
+    }
+    #inicio p{
+        position: relative;
+        top: 0;
+        right: 0;
+    }
+    #productos{
+        background-color: rgb(44, 45, 46);
+        height: 100%;
+        clip-path:none;
+        cursor: pointer;
+        transition: background-color,font-size 0.4s;
+    
+    }
+    #productos p {
+        position: relative;
+        top:0;
+        left:0;
+    }
+    #contacto{
+        background-color: rgb(212, 209, 209);
+        clip-path: none;
+        height: 100%;
+        cursor: pointer;
+        transition: background-color,font-size 0.4s;
+    }
+    #contacto p {
+        position: relative;
+        color: black;
+        top:0;
+        left:0rem;
+    }
+    
+    #inicio:hover{
+        background-color: #0faa4b;
+    }
+    #productos:hover{
+        background-color: rgb(83, 90, 95);
+    }
+    #contacto:hover{
+        background-color:rgb(231, 224, 224);
+    }
+}

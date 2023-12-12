@@ -1,0 +1,373 @@
+main {
+    position: relative;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    top: -5rem;
+    align-items: start;
+}
+
+#PRODUCTOStitulo {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -7rem;
+    /*esto cambiar*/
+    font-size: 60px;
+    font-weight: bold;
+    color: #ca6969;
+
+}
+
+#mainP {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    background-color: #ffffff;
+
+}
+
+#listaProductos {
+    width: 20%;
+    height: 100%;
+    margin-left: 1rem;
+    min-width: 15rem;
+    margin-top: 70px;
+}
+
+#listaProductos li {
+    position: relative;
+    padding: 0.5rem;
+    margin: 10px;
+    color: #000;
+    font-size: 16px;
+    background-color: #ececec;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    gap: 0.5rem;
+    height: auto;
+}
+
+#listaProductos input[type="checkbox"] {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    appearance: none;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(168, 168, 168);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#listaProductos input[type="checkbox"]:checked {
+    background-color: #5a975c;
+}
+
+#listaProductos input[type="checkbox"]::before {
+    content: "\1649";
+    /* Código Unicode para la marca de verificación */
+    font-size: 16px;
+    color: #fff;
+    /* Color de la marca de verificación cuando está marcado */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#listaProductos input[type="checkbox"]:checked::before {
+    opacity: 1;
+}
+
+.listas {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 1rem;
+    cursor: pointer;
+}
+
+#contenedorProductos {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    padding: 0 1rem;
+    margin: 0.5rem;
+}
+
+#buscadorProducto {
+    direction: rtl;
+    width: 100%;
+    height: 80px;
+}
+
+#productosTotales {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1rem;
+    overflow: scroll;
+
+}
+
+.productosPagina {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.producto {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 22.2rem;
+    height: 30rem;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    cursor: pointer;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.producto:hover {
+    background-color: #c9e7c9;
+    border: #90bd91 solid  3px;
+    box-shadow: 5px 5px teal;;
+    
+}
+
+.imagenProducto {
+    width: 90%;
+    /* Todo sera del 90 porciento*/
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.descripcionProducto {
+    width: 90%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tipoProducto {
+    font-size: 2rem;
+}
+
+.subtipoProducto {
+    font-size: 1rem;
+}
+
+.valorProducto {
+    font-size: 3rem;
+}
+
+.propiedadesProducto {
+    font-size: 1.3rem;
+}
+
+/*Parte responsive*/
+
+@media screen and (max-width: 1380px) {
+    main {
+        position: relative;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        align-items: start;
+    }
+
+    #PRODUCTOStitulo {
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0rem;
+        /*esto cambiar*/
+        font-size: 60px;
+        font-weight: bold;
+
+    }
+
+    #mainP {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+
+    }
+
+    #listaProductos {
+        width: 100%;
+        height: auto;
+        margin-left: 0rem;
+        min-width: 100%;
+        margin-top: 0px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    #listaProductos li {
+        position: relative;
+        padding: 0.5rem;
+        margin: 10px;
+        color: #000;
+        font-size: 16px;
+        padding: 1rem;
+        border-radius: 5px;
+        display: flex;
+        gap: 0.5rem;
+        height: auto;
+        width: 100%;
+    }
+
+    #contenedorProductos {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 90%;
+        padding: 0 1rem 1rem 1rem;
+        margin: 0rem;
+    }
+
+
+    
+#productosTotales {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    gap: 3.5%;
+}
+
+.productosPagina {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.producto {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 10.2rem;
+    height: 15rem;
+    cursor: pointer;
+    align-items: center;
+}
+
+
+.tipoProducto {
+    font-size: 1.3rem;
+}
+
+.subtipoProducto {
+    font-size: 1rem;
+}
+
+.valorProducto {
+    font-size: 1rem;
+}
+
+.propiedadesProducto {
+    font-size: 0rem;
+}
+
+
+}
+
+
+@media screen and (max-width: 840px) {
+    main {
+        position: relative;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        background-color: #f7f7f7;
+        top: 0;
+        align-items: start;
+    }
+
+    #listaProductos {
+        width: 100%;
+        height: auto;
+        margin-left: 0rem;
+        min-width: 100%;
+        margin-top: 0px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    #listaProductos li {
+        position: relative;
+        padding: 0.5rem;
+        margin: 10px;
+        color: #000;
+        font-size: 16px;
+        background-color: #ececec;
+        padding: 1rem;
+        border-radius: 5px;
+        display: flex;
+        gap: 0.5rem;
+        height: auto;
+        width: 100%;
+    }
+
+    #productosTotales {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 10px);
+        gap: 1rem;
+    }
+
+}
+
+@media screen and (max-width: 523px) {
+    #productosTotales {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+}
