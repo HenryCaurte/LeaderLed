@@ -1,10 +1,11 @@
 main {
     position: relative;
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     top: -5rem;
     align-items: start;
+    max-width: 100%;
 }
 
 #PRODUCTOStitulo {
@@ -29,27 +30,38 @@ main {
     background-color: #ffffff;
 
 }
+#separador{
+    position: absolute;
+    width: 100%;
+    height: 5rem;
+    background-color: #d0e6ca;
+}
 
 #listaProductos {
     width: 20%;
     height: 100%;
-    margin-left: 1rem;
     min-width: 15rem;
-    margin-top: 70px;
+    margin-top:5rem ;
+    border: 3px solid #d6d6d6;
 }
 
 #listaProductos li {
     position: relative;
-    padding: 0.5rem;
-    margin: 10px;
     color: #000;
-    font-size: 16px;
-    background-color: #ececec;
-    padding: 1rem;
-    border-radius: 5px;
+    font-size: 18px;
+    background-color: #ffffff;
     display: flex;
-    gap: 0.5rem;
-    height: auto;
+    height: 4.5rem;
+    align-items: center;
+    transition: scale 0.5s;
+    transition: background-color .5s;
+    transition: box-shadow .5s;
+}
+#listaProductos li:hover{
+    z-index: 5;
+    background-color: #f1c6c6 ;
+    box-shadow: 5px 5px #888686;
+    scale: 1.05;
 }
 
 #listaProductos input[type="checkbox"] {
@@ -61,6 +73,7 @@ main {
     border-radius: 5px;
     background-color: rgb(168, 168, 168);
     transition: background-color 0.3s, border-color 0.3s;
+    margin-left: 0.5rem;
 }
 
 #listaProductos input[type="checkbox"]:checked {
@@ -86,10 +99,10 @@ main {
 }
 
 .listas {
-    position: relative;
+    position: absolute;
     display: flex;
     align-items: center;
-    text-align: center;
+    justify-content:  center;
     margin: 0;
     top: 0;
     height: 100%;
@@ -121,7 +134,8 @@ main {
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: 1rem;
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y:hidden;
 
 }
 
@@ -139,19 +153,21 @@ main {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 22.2rem;
-    height: 30rem;
-    background-color: #f1f1f1;
+    width: 14rem;
+    height: 20rem;
+    background-color: #ffffff;
     border-radius: 10px;
     cursor: pointer;
     align-items: center;
     transition: all 0.5s;
+    align-items: center;
+    justify-content: center;
+    border: #f8f8f8 solid  3px;
 }
 
 .producto:hover {
     background-color: #c9e7c9;
-    border: #90bd91 solid  3px;
-    box-shadow: 5px 5px teal;;
+    box-shadow: 5px 5px teal;
     
 }
 
@@ -165,7 +181,7 @@ main {
 }
 
 .descripcionProducto {
-    width: 90%;
+    width: 80%;
     height: 40%;
     display: flex;
     flex-direction: column;
@@ -182,7 +198,7 @@ main {
 }
 
 .valorProducto {
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 .propiedadesProducto {
@@ -309,8 +325,103 @@ main {
 
 
 }
+/* PARTE DEL MODAL */
 
+#modalBack{
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: #c5c5c591;
+}
+#modalItem{
+    z-index: 11;
+    position:fixed;
+    top:50%;
+    left: 50%;
+    width: 65%;
+    height: 70%;
+    display: none; /*cambiar a none despues*/
+    background: linear-gradient(to left,#d7ffd7,#ffffff);
+    border: 3px solid #5a975c;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px #888686;
+    transform: translateX(-50%) translateY(-50%);    
+    flex-direction: column-reverse;
+}
+#cerrarModal{
+    z-index:5;
+    position: absolute;
+    width: 8%;
+    height: 8%;
+    min-width: 10rem;
+    min-width: 5rem;
+    border: none;
+    top:0;
+    right: 50%;
+    cursor: pointer;
+    background-color: #000000;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color .5s;
+    font-size: 1em;
+    border-radius: 100%;
+}
+#cerrarModal:hover{
+    background-color: #ca6969;
+}
+#contenidoModal{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
 
+}
+#imagenPM{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#descripcionPM{
+    width: 50%;
+}
+#descripcionPrecio{
+    display: flex;
+    width: 100%;
+    height: 35%;
+    text-align: center;
+    color: #000;
+    font-size: 5rem;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+#descripcionDistribuidores{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+}
+#descripcionDistribuidores svg{
+    width: 100rem;
+}
+#descripcionPropiedades{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+/**/
 @media screen and (max-width: 840px) {
     main {
         position: relative;

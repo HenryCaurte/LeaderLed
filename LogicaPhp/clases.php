@@ -27,7 +27,8 @@ class ConexionDB {
                 "Tipo" => $fila['Tipo'],
                 "SubTipo" => $fila['SubTipo'],
                 "Valor" => $fila['Valor'],
-                "Propiedades" => $fila['Propiedades']
+                "Propiedades" => $fila['Propiedades'],
+                "Distribuidores"=>$fila['Distribuidores']
             ));
         }
 
@@ -49,7 +50,9 @@ class ConexionDB {
                 "Tipo" => $fila['Tipo'],
                 "SubTipo" => $fila['SubTipo'],
                 "Valor" => $fila['Valor'],
-                "Propiedades" => $fila['Propiedades']
+                "Propiedades" => $fila['Propiedades'],
+                "Distribuidores"=>$fila['Distribuidores']
+
             ));
         }
     

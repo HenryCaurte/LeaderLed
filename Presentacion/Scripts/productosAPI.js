@@ -2,9 +2,8 @@ const productosTotales = document.getElementById('productosTotales'); // guardo 
 const listaCategorias = document.getElementById('listaProductos'); // par ala lista de categorias
 const listaCat = []
 
-//const url = 'http://127.0.0.1:8000/productos/'; // url de django localhost
-const url = 'https://leaderled.000webhostapp.com/LogicaPhp/productos.php' //esta es para la web en general
-
+const url = 'http://127.0.0.1:8000/productos/'; // url de django localhost
+//const url = 'https://leaderled.000webhostapp.com/LogicaPhp/productos.php' //esta es para la web en general
 
 function crearProducto(data,productosPagina) {
     var div = document.createElement('div')
@@ -20,8 +19,10 @@ function crearProducto(data,productosPagina) {
     `
     productosPagina.appendChild(div);
 
+    div.addEventListener("click", function() {
+        abrirModal(data.IdProducto,data.Valor,data.Propiedades,data.Distribuidores);
+    })
 }
-
 function actualizarProductos(data) {
     productosTotales.innerHTML = ''; //reiniciamos
     for (let a = 0; a < data.productos.length; a += 6) {
@@ -36,47 +37,20 @@ function actualizarProductos(data) {
         }
     }
 }
-
-productos = new Conexion(url);
-
-function todosProductos(productos){
+async function todosProductos(productos){
     productosTotales.innerHTML = ''; //reiniciamos
-    productos.crearConexion((data) => {
+    await productos.crearConexion((data) => {
         for (let a = 0; a < data.productos.length; a += 6) {
             if (a % 6 === 0 && a < data.productos.length) {
                 var productosPagina = document.createElement('div');
                 productosPagina.classList = "productosPagina";
                 productosPagina.id = "pagina" + data.productos[a].id;
                 productosTotales.appendChild(productosPagina); // metemos el div en cada uno
-                console.log(data.productos[a].id)
                 for (let i = a; i < (a + 6); i++) {
                     crearProducto(data.productos[i],productosPagina); // creamos el div
                 }
             }
         }
-    });
-}
-
-todosProductos(productos); // iniciamos todos los productos
-
-// ahora el apartado de las categorias
-categorias = new Conexion(url); // creamos unanueva conexion
-
-function initInputs()
-{
-    const checkboxes = document.querySelectorAll('.inputsTipo');
-    checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', function () {
-            if (this.checked) {
-                const dato = this.getAttribute('data-tipo');
-                if(dato === "all"){
-                    todosProductos(categorias); return;
-                }
-                categorias.buscar(dato, (data) => {
-                    actualizarProductos(data);
-                });
-            }
-        });
     });
 }
 async function inputsConexion() 
@@ -98,5 +72,8 @@ async function inputsConexion()
 
     initInputs(); // llamamos a la que queremos crear
 }
-
+productos = new Conexion(url);
+todosProductos(productos); // iniciamos todos los productos
+// ahora el apartado de las categorias
+categorias = new Conexion(url); // creamos unanueva conexion
 inputsConexion();
