@@ -17,12 +17,16 @@ class Conexion{
     async buscar(dataBuscar, _funcion){
         //tenemos que buscar una data claramente, entonces le tenemos que pasar al servidor la que queremos buscar, como es en php, no requiere gran cosa, primero queremos que data quiere, no?
         try{
+            const dn = {
+                tipoBusca: "tipo",
+                dato: dataBuscar
+            };
             const response = await fetch(this.url, {
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(dataBuscar)
+                body: JSON.stringify(dn)
             })
             const data = await response.json();
             _funcion(data); // lo usamos
@@ -31,6 +35,28 @@ class Conexion{
         catch(error){
             console.log("error: "+error)
         }
+    }
+    async buscarPorDistribuidor(dataBuscar,_funcion){
+        try{
+            const dn = {
+                tipoBusca: "distribuidor",
+                dato: dataBuscar
+            };
+            const response = await fetch(this.url, {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dn)
+            })
+            const data = await response.json();
+           _funcion(data); // lo usamos
+            return data;
+        }
+        catch(error){
+            console.log("error: "+error)
+        }
+
     }
 
 }

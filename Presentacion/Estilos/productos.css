@@ -30,19 +30,101 @@ main {
     background-color: #ffffff;
 
 }
-#separador{
+
+#separador {
     position: absolute;
     width: 100%;
-    height: 5rem;
-    background-color: #d0e6ca;
+    height: 8rem;
+    border: #f8f8f8 solid 3px;
+    background-color: #f8f8f5;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 7.9rem;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    /* Añadido para el desplazamiento suave */
+    gap: 5rem;
+    padding: 0 2.5rem;
+}
+.btnMarcas {
+    background-color: #ffffff;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: #d6d6d6 solid 3px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: background-color .5s;
+    transition: scale .5s;
+}
+
+.btnMarcas img {
+    max-width: 100%;
+    max-height: 100%;
+    scale: 0.8;
+}
+
+.btnMarcas:hover {
+    background-color: #dcf7e4;
+    box-shadow: 5px 5px #98ac94;
+    scale: 1.05;
+}
+#botonesSeparador{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    top: 3.7rem;
+}
+.moverMarcas {
+    z-index: 5;
+    position:inherit;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: none;
+    background-color: #ca6969;
+    cursor: pointer;
+}
+
+.moverMarcas:focus {
+    outline: none;
+}
+
+#moverMarcasDerecha {
+    right: 0;
+    clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+}
+
+#moverMarcasDerecha:hover {
+    border: none;
+    scale:1.1;
+}
+
+#moverMarcasIzquierda {
+    left: 0;
+    clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+}
+
+#moverMarcasIzquierda:hover {
+    border: none;
+    scale:1.1;
+}
+
+.contenedorInformacionProductos {
+    position: relative;
+    margin-top: 9rem;
 }
 
 #listaProductos {
     width: 20%;
     height: 100%;
     min-width: 15rem;
-    margin-top:5rem ;
-    border: 3px solid #d6d6d6;
+    border: #f8f8f8 solid 3px;
 }
 
 #listaProductos li {
@@ -57,9 +139,10 @@ main {
     transition: background-color .5s;
     transition: box-shadow .5s;
 }
-#listaProductos li:hover{
+
+#listaProductos li:hover {
     z-index: 5;
-    background-color: #f1c6c6 ;
+    background-color: #f1c6c6;
     box-shadow: 5px 5px #888686;
     scale: 1.05;
 }
@@ -102,7 +185,7 @@ main {
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content:  center;
+    justify-content: center;
     margin: 0;
     top: 0;
     height: 100%;
@@ -115,10 +198,10 @@ main {
     position: relative;
     display: flex;
     flex-direction: column;
+    min-height: 30rem;
     width: 80%;
     height: 100%;
     padding: 0 1rem;
-    margin: 0.5rem;
 }
 
 #buscadorProducto {
@@ -131,11 +214,12 @@ main {
     position: relative;
     width: 100%;
     height: auto;
+    min-height: 25rem;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     overflow-x: scroll;
-    overflow-y:hidden;
+    overflow-y: hidden;
 
 }
 
@@ -159,16 +243,16 @@ main {
     border-radius: 10px;
     cursor: pointer;
     align-items: center;
-    transition: all 0.5s;
-    align-items: center;
     justify-content: center;
-    border: #f8f8f8 solid  3px;
+    border: #f8f8f8 solid 3px;
+    transition: all 0.5s;
+
 }
 
 .producto:hover {
     background-color: #c9e7c9;
     box-shadow: 5px 5px teal;
-    
+
 }
 
 .imagenProducto {
@@ -205,7 +289,214 @@ main {
     font-size: 1.3rem;
 }
 
-/*Parte responsive*/
+/* MODAL*/
+
+/* PARTE DEL MODAL */
+
+#modalBack {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: #6380634f;
+}
+
+#modalItem {
+    z-index: 11;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 65%;
+    height: 70%;
+    display: none;
+    background: #fff;
+    /*linear-gradient(to right,#ffffff,#eaf7ea,#ffffff);*/
+    border-radius: 50px;
+    overflow: hidden;
+    transform: translateX(-50%) translateY(-50%);
+    align-items: center;
+    justify-content: center;
+}
+
+#cerrarModal {
+    z-index: 5;
+    position: absolute;
+    width: 8%;
+    height: 8%;
+    min-width: 10rem;
+    min-width: 5rem;
+    border: none;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    background-color: #eb5b5b;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color .5s;
+    font-size: 1em;
+    border-radius: 10%;
+}
+
+#cerrarModal:hover {
+    background-color: #ca6969;
+}
+
+#contenidoModal {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 85%;
+
+}
+
+#imagenPM {
+    position: relative;
+    width: 50%;
+    /* Usando vw para el ancho relativo a la ventana gráfica */
+    height: 100%;
+    /* Asegúrate de que el contenedor padre tenga una altura definida */
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    align-items: center;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    /* Añadido para el desplazamiento suave */
+
+}
+
+.divImagenPM {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* Puedes considerar cambiarlo a porcentaje si es necesario */
+    align-items: center;
+    justify-content: center;
+}
+
+.divImagenPM img {
+    position: relative;
+    max-width: 80%;
+    height: auto;
+    /* Esto asegura que la imagen mantenga su proporción de aspecto */
+    max-height: 35rem;
+}
+
+#izqMovilidad {
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #ffffff00;
+    border: none;
+}
+
+#izqMovilidad svg {
+    scale: 2.3;
+}
+
+#izqMovilidad svg:hover {
+    scale: 2.8;
+}
+
+#derMovilidad {
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #ffffff00;
+    border: none;
+}
+
+#derMovilidad svg {
+    scale: 2.3;
+}
+
+#derMovilidad svg:hover {
+    scale: 2.8;
+}
+
+#descripcionPM {
+    width: 50%;
+}
+
+#descripcionDistribuidores {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#descripcionDistribuidores img {
+    width: 0;
+    flex: 1;
+    max-width: 15rem;
+    height: auto;
+}
+
+#descripcionPropiedades {
+    width: 100%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    min-width: 400px;
+    max-width: 90%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#cabeceraTabla tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+#cabeceraTabla td {
+    padding: 12px 15px;
+    text-align: center;
+    justify-content: center;
+}
+
+#cabeceraTabla tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+#informacionTabla {
+    background-color: #ecf0f1;
+    /* Color de fondo para la información */
+}
+
+#informacionTabla td {
+    border-bottom: 1px solid #dddddd;
+    padding: 5px 7px;
+    text-align: center;
+    justify-content: center;
+}
+
+
+
+/*Parte responsive GENERAL LA PARTE GENERAL*/
 
 @media screen and (max-width: 1380px) {
     main {
@@ -243,24 +534,13 @@ main {
         height: auto;
         margin-left: 0rem;
         min-width: 100%;
-        margin-top: 0px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
     }
 
     #listaProductos li {
-        position: relative;
-        padding: 0.5rem;
-        margin: 10px;
-        color: #000;
-        font-size: 16px;
-        padding: 1rem;
-        border-radius: 5px;
-        display: flex;
-        gap: 0.5rem;
-        height: auto;
-        width: 100%;
+        margin: 0;
     }
 
     #contenedorProductos {
@@ -273,152 +553,117 @@ main {
         margin: 0rem;
     }
 
+    #modalItem {
+        width: 100%;
+    }
 
-    
-#productosTotales {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    overflow-x: scroll;
-    overflow-y: hidden;
-    gap: 3.5%;
-}
+    #productosTotales {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        overflow-x: scroll;
+        overflow-y: hidden;
+        gap: 3.5%;
+    }
 
-.productosPagina {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 1rem;
-}
+    .productosPagina {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1rem;
+    }
 
-.producto {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 10.2rem;
-    height: 15rem;
-    cursor: pointer;
-    align-items: center;
-}
-
-
-.tipoProducto {
-    font-size: 1.3rem;
-}
-
-.subtipoProducto {
-    font-size: 1rem;
-}
-
-.valorProducto {
-    font-size: 1rem;
-}
-
-.propiedadesProducto {
-    font-size: 0rem;
-}
+    .producto {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 10.2rem;
+        height: 15rem;
+        cursor: pointer;
+        align-items: center;
+    }
 
 
-}
-/* PARTE DEL MODAL */
+    .tipoProducto {
+        font-size: 1.3rem;
+    }
 
-#modalBack{
-    z-index: 10;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    background-color: #c5c5c591;
-}
-#modalItem{
-    z-index: 11;
-    position:fixed;
-    top:50%;
-    left: 50%;
-    width: 65%;
-    height: 70%;
-    display: none; /*cambiar a none despues*/
-    background: linear-gradient(to left,#d7ffd7,#ffffff);
-    border: 3px solid #5a975c;
-    border-radius: 50px;
-    overflow: hidden;
-    box-shadow: 5px 5px 5px #888686;
-    transform: translateX(-50%) translateY(-50%);    
-    flex-direction: column-reverse;
-}
-#cerrarModal{
-    z-index:5;
-    position: absolute;
-    width: 8%;
-    height: 8%;
-    min-width: 10rem;
-    min-width: 5rem;
-    border: none;
-    top:0;
-    right: 50%;
-    cursor: pointer;
-    background-color: #000000;
-    color: #fff;
-    font-weight: bold;
-    transition: background-color .5s;
-    font-size: 1em;
-    border-radius: 100%;
-}
-#cerrarModal:hover{
-    background-color: #ca6969;
-}
-#contenidoModal{
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: 100%;
+    .subtipoProducto {
+        font-size: 1rem;
+    }
 
-}
-#imagenPM{
-    position: relative;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#descripcionPM{
-    width: 50%;
-}
-#descripcionPrecio{
-    display: flex;
-    width: 100%;
-    height: 35%;
-    text-align: center;
-    color: #000;
-    font-size: 5rem;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    align-items: center;
-    justify-content: center;
-}
-#descripcionDistribuidores{
-    width: 100%;
-    height: 25%;
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1rem;
-}
-#descripcionDistribuidores svg{
-    width: 100rem;
-}
-#descripcionPropiedades{
-    width: 100%;
-    height: 40%;
-    display: flex;
-    align-items: start;
-    justify-content: center;
+    .valorProducto {
+        font-size: 1rem;
+    }
+
+    .propiedadesProducto {
+        font-size: 0rem;
+    }
+
+    #contenidoModal {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 85%;
+        flex-direction: column;
+    }
+
+    #imagenPM {
+        position: relative;
+        width: 100%;
+        height: 50%;
+    }
+
+    .divImagenPM {
+        width: 100%;
+        height: 100%;
+        /* Puedes considerar cambiarlo a porcentaje si es necesario */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .divImagenPM img {
+        position: relative;
+        max-width: 80%;
+        height: auto;
+        /* Esto asegura que la imagen mantenga su proporción de aspecto */
+        max-height: 15rem;
+    }
+
+    #izqMovilidad {
+        top: 25%;
+        left: 0;
+    }
+
+    #derMovilidad {
+        top: 25%;
+        right: 0;
+        transform: translateY(-50%);
+    }
+
+    #descripcionPM {
+        width: 100%;
+        height: 50%;
+    }
+
+    #descripcionDistribuidores img {
+        width: 0;
+        flex: 1;
+        max-height: 90%;
+        max-width: 15rem;
+        height: auto;
+    }
+
+    #descripcionPrecio {
+        font-size: 3rem;
+    }
+
+
 }
 
 /**/
@@ -432,53 +677,4 @@ main {
         top: 0;
         align-items: start;
     }
-
-    #listaProductos {
-        width: 100%;
-        height: auto;
-        margin-left: 0rem;
-        min-width: 100%;
-        margin-top: 0px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-
-    #listaProductos li {
-        position: relative;
-        padding: 0.5rem;
-        margin: 10px;
-        color: #000;
-        font-size: 16px;
-        background-color: #ececec;
-        padding: 1rem;
-        border-radius: 5px;
-        display: flex;
-        gap: 0.5rem;
-        height: auto;
-        width: 100%;
-    }
-
-    #productosTotales {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(3, 10px);
-        gap: 1rem;
-    }
-
-}
-
-@media screen and (max-width: 523px) {
-    #productosTotales {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
 }
