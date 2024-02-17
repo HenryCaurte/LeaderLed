@@ -2,10 +2,14 @@
 <div id="PRODUCTOStitulo"> PRODUCTOS</div>
 <div id="mainP">
     <div id="separador"></div>
-    <div id="listaProductos">
+    <div id="botonesSeparador">
+        <button class ="moverMarcas" id="moverMarcasIzquierda" onclick="document.getElementById('separador').scrollLeft -= 250;"></button>
+        <button class ="moverMarcas" id="moverMarcasDerecha" onclick="document.getElementById('separador').scrollLeft += 250;"></button>
+    </div>
+    <div id="listaProductos" class="contenedorInformacionProductos">
     <li><input type="checkbox" class ="inputsTipo" id="inputTodo" data-tipo="all"><label class="listas" for="inputTodo">Todo</label></li>
     </div>
-    <div id="contenedorProductos">
+    <div id="contenedorProductos" class="contenedorInformacionProductos">
         <div id="buscadorProducto"></div>
         <div id="productosTotales">
             <!-- Aqui iran los productos-->

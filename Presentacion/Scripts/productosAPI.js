@@ -1,26 +1,25 @@
 const productosTotales = document.getElementById('productosTotales'); // guardo donde estan los productos totales para añadir uno nuevo cada vez que quiera
 const listaCategorias = document.getElementById('listaProductos'); // par ala lista de categorias
-const listaCat = []
-
-const url = 'http://127.0.0.1:8000/productos/'; // url de django localhost
-//const url = 'https://leaderled.000webhostapp.com/LogicaPhp/productos.php' //esta es para la web en general
+// vamos a tener que obtener lo que son los clicks a los otros: 
+const listaCat = [] // para no repetir las categorias
+//const url = 'http://127.0.0.1:8000/productos/'; // url de django localhost
+const url = 'https://leaderled.000webhostapp.com/LogicaPhp/productos.php' //esta es para la web en general
 
 function crearProducto(data,productosPagina) {
     var div = document.createElement('div')
     div.classList = "producto"
     div.id = "div" + data.id;
     div.innerHTML = `
-        <div class="imagenProducto"><img src="Persistencia/Imagenes/imgProductos/${data.IdProducto}.png" alt="${data.IdProducto}" height="65%"></div> 
+        <div class="imagenProducto"><img src="Persistencia/Imagenes/imgProductos/${data.IdProducto}.png" alt="${data.IdProducto}" height="65%" loading="lazy"></div> 
         <div class="descripcionProducto">
             <div class ="tipoProducto" id="tipoProducto${data.id}">${data.Tipo}</div>
             <div class="subtipoProducto" id="subtipoProducto${data.id}">${data.SubTipo}</div>
-            <div class="valorProducto" id="valorProducto${data.id}">${data.Valor}</div>
         </div>
     `
     productosPagina.appendChild(div);
 
     div.addEventListener("click", function() {
-        abrirModal(data.IdProducto,data.Valor,data.Propiedades,data.Distribuidores);
+        abrirModal(data.IdProducto,data.Fotos,data.Propiedades,data.Distribuidores);
     })
 }
 function actualizarProductos(data) {
@@ -32,10 +31,20 @@ function actualizarProductos(data) {
             productosPagina.id = "pagina" + data.productos[a].id;
             productosTotales.appendChild(productosPagina); // metemos el div en cada uno
             for (let i = a; i < (a + 6); i++) {
+                if(data.productos[i]){
                 crearProducto(data.productos[i],productosPagina); // creamos el div
+                }
             }
         }
     }
+}
+function noProductos(){
+    productosTotales.innerHTML=`
+    
+        <div><span> NP </span> No hay prodcutos</div>
+    
+    `;
+
 }
 async function todosProductos(productos){
     productosTotales.innerHTML = ''; //reiniciamos
@@ -55,7 +64,7 @@ async function todosProductos(productos){
 }
 async function inputsConexion() 
 {
-    await categorias.crearConexion((data) => {
+    await productos.crearConexion((data) => {
         for (var a = 0; a < data.productos.length; a++) {
             if (listaCat.filter(e => e === data.productos[a].Tipo).length !== 0) {
                 continue;
@@ -75,5 +84,4 @@ async function inputsConexion()
 productos = new Conexion(url);
 todosProductos(productos); // iniciamos todos los productos
 // ahora el apartado de las categorias
-categorias = new Conexion(url); // creamos unanueva conexion
 inputsConexion();

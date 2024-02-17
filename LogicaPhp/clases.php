@@ -19,14 +19,13 @@ class ConexionDB {
         $arregloEnviar = array();
         $productos = "SELECT * FROM productos";
         $resultado = $this->conexion->query($productos);
-
         while ($fila = $resultado->fetch_assoc()) {
             array_push($arregloEnviar, array(
                 "id" => $fila['ID'],
                 "IdProducto"=> $fila['IdProducto'],
                 "Tipo" => $fila['Tipo'],
                 "SubTipo" => $fila['SubTipo'],
-                "Valor" => $fila['Valor'],
+                "Fotos" => $fila['Fotos'],
                 "Propiedades" => $fila['Propiedades'],
                 "Distribuidores"=>$fila['Distribuidores']
             ));
@@ -34,31 +33,49 @@ class ConexionDB {
 
         return $arregloEnviar;
     }
-    public function seccionDatos($tipo) { 
+    public function seccionDatos($tipo) { //busca los datos por tipo
         $arregloEnviar = array();
         $productos = "SELECT * FROM productos WHERE Tipo = ?";
         $stmt = $this->conexion->prepare($productos);
         $stmt->bind_param("s", $tipo);
         $stmt->execute();
         $result = $stmt->get_result();
-    
         // Iteramos sobre los resultados
         while ($fila = $result->fetch_assoc()) {
             array_push($arregloEnviar, array(
                 "id" => $fila['ID'],
-                "IdProducto" => $fila['IdProducto'],
+                "IdProducto"=> $fila['IdProducto'],
                 "Tipo" => $fila['Tipo'],
                 "SubTipo" => $fila['SubTipo'],
-                "Valor" => $fila['Valor'],
+                "Fotos" => $fila['Fotos'],
                 "Propiedades" => $fila['Propiedades'],
                 "Distribuidores"=>$fila['Distribuidores']
-
             ));
         }
-    
-        $stmt->close();
         return $arregloEnviar;
     }
+    public function seccionDistribuidor($distribuidor){
+        $arregloEnviar = array();
+        $productos = "SELECT * FROM productos WHERE Distribuidores = ?";
+        $stmt = $this->conexion->prepare($productos);
+        $stmt->bind_param("s", $distribuidor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        // Iteramos sobre los resultados
+        while ($fila = $result->fetch_assoc()) {
+            array_push($arregloEnviar, array(
+                "id" => $fila['ID'],
+                "IdProducto"=> $fila['IdProducto'],
+                "Tipo" => $fila['Tipo'],
+                "SubTipo" => $fila['SubTipo'],
+                "Fotos" => $fila['Fotos'],
+                "Propiedades" => $fila['Propiedades'],
+                "Distribuidores"=>$fila['Distribuidores']
+            ));
+        }
+        return $arregloEnviar;
+    }
+    
     public function cerrarConexion() {
         $this->conexion->close();
     }
